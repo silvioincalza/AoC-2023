@@ -11,12 +11,6 @@ import static java.util.function.Function.identity;
 
 public class ElfiCalibrationDecoder {
 
-
-
-    public ElfiCalibrationDecoder(LineParser lineParsers) {
-        this.lineParser = lineParsers;
-    }
-
     public static class NumberAsWordToDigitLineParser implements LineParser {
         private static final Map<String, Integer> numberAsWordToDigit = Map.of("zero", 0, "one", 1, "two", 2, "three", 3, "four", 4, "five", 5, "six", 6, "seven", 7, "eight", 8, "nine", 9);
 
@@ -37,9 +31,11 @@ public class ElfiCalibrationDecoder {
 
         @Override
         public String parse(String line) {
-            String leftDigit = line.chars().filter(Character::isDigit).mapToObj(Character::toString).findFirst().orElse("0");
-            String rightDigit = new StringBuilder(line).reverse().chars().filter(Character::isDigit).mapToObj(Character::toString).findFirst().orElse("0");
-            return leftDigit + rightDigit;
+            String firstDigit = line.chars().filter(Character::isDigit).mapToObj(Character::toString).findFirst().orElse("0");
+            String lastDigit = new StringBuilder(line).reverse().chars().filter(Character::isDigit).mapToObj(Character::toString).findFirst().orElse("0");
+            if ("0".equals(lastDigit))
+                return firstDigit;
+            return firstDigit + lastDigit;
         }
     }
 
@@ -68,9 +64,9 @@ public class ElfiCalibrationDecoder {
     }
 
     private final LineParser lineParser ;
-
-
-
+    public ElfiCalibrationDecoder(LineParser lineParsers) {
+        this.lineParser = lineParsers;
+    }
 
     public int decode(Path path) {
         return new DefaultInputReader(path).read().stream().map(lineParser::parse).mapToInt(Integer::valueOf).sum();
