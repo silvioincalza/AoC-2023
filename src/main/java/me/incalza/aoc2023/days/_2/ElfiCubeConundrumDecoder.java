@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 import static java.util.function.Predicate.not;
 
 public class ElfiCubeConundrumDecoder {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ElfiCubeConundrumDecoder.class);
     private final InputReader inputReader;
     private final LineParser<GameRecord> lineParser;
     private final CubeConfig cubeConfig;
@@ -32,7 +31,7 @@ public class ElfiCubeConundrumDecoder {
     }
 
     private Stream<GameRecord> getPossibleGameRecordAsStream() {
-        return inputReader.read().stream().map(lineParser::parse)
+        return getGameRecordStream()
                 .filter(not(v -> v.hasRedCubesGreatThant(cubeConfig.maxRed())))
                 .filter(not(v -> v.hasGreenCubesGreatThant(cubeConfig.maxGreen())))
                 .filter(not(v -> v.hasBlueCubesGreatThant(cubeConfig.maxBlue())));
@@ -40,12 +39,13 @@ public class ElfiCubeConundrumDecoder {
 
 
     public int decodePower() {
-        return inputReader.read().stream().map(lineParser::parse)
-                .mapToInt(v -> {
-                    CubeConfig config = v.getPossibleConfiguration();
-                    LOGGER.debug("Possible configuration {}", config);
-                    return config.maxRed() * config.maxGreen() * config.maxBlue();
-                }).sum();
+        return getGameRecordStream()
+                .mapToInt(GameRecord::getPower).sum();
+    }
+
+    private Stream<GameRecord> getGameRecordStream() {
+        return inputReader.read().stream()
+                .map(lineParser::parse);
     }
 
 

@@ -20,7 +20,6 @@ public class GameRecord {
         return setOfCubes.stream().anyMatch(v -> v.redCube() > max);
     }
 
-
     public boolean hasGreenCubesGreatThant(int max) {
         return setOfCubes.stream().anyMatch(v -> v.greenCube() > max);
     }
@@ -36,8 +35,9 @@ public class GameRecord {
         return new CubeConfig(maxRed, maxGreen, maxBlue);
     }
 
-    public List<SetOfCube> getSetOfCubes() {
-        return setOfCubes;
+    public int getPower() {
+        CubeConfig config = getPossibleConfiguration();
+        return config.maxRed() * config.maxGreen() * config.maxBlue();
     }
 
     public record SetOfCube(int redCube, int greenCube, int blueCube) {
