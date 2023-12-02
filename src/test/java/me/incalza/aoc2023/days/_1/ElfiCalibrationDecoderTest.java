@@ -1,6 +1,5 @@
 package me.incalza.aoc2023.days._1;
 
-import me.incalza.aoc2023.days.LineParsers;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

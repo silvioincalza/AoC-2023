@@ -1,7 +1,7 @@
 package me.incalza.aoc2023.days;
 
-public interface LineParser {
+public interface LineParser<T>  {
 
-    String parse(String line);
+    T parse(String line);
 
 }

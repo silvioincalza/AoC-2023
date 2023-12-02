@@ -1,7 +1,6 @@
 package me.incalza.aoc2023.days._1;
 
 
-import me.incalza.aoc2023.days.LineParsers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
