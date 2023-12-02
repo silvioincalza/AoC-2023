@@ -7,14 +7,16 @@ import java.nio.file.Path;
 
 public class ElfiCalibrationDecoder {
 
-    private final LineParser lineParser;
+    private final InputReader reader;
+    private final LineParser<String> lineParser;
 
-    public ElfiCalibrationDecoder(LineParser lineParser) {
+    public ElfiCalibrationDecoder(InputReader inputReader, LineParser<String> lineParser) {
+        this.reader = inputReader;
         this.lineParser = lineParser;
     }
 
-    public int decode(Path path) {
-        return InputReader.of(path).read().stream().map(lineParser::parse).mapToInt(Integer::valueOf).sum();
+    public int decode() {
+        return reader.read().stream().map(lineParser::parse).mapToInt(Integer::valueOf).sum();
     }
 
 }

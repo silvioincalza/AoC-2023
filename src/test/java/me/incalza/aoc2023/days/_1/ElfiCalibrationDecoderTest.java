@@ -1,12 +1,14 @@
 package me.incalza.aoc2023.days._1;
 
+import me.incalza.aoc2023.days.InputReader;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URL;
 import java.nio.file.Path;
+
+import static me.incalza.aoc2023.days._1.LineParsers.of;
 
 class ElfiCalibrationDecoderTest {
 
@@ -15,34 +17,38 @@ class ElfiCalibrationDecoderTest {
 
     @Test
     void testPart1Simple() throws Exception {
-        ElfiCalibrationDecoder decoder = new ElfiCalibrationDecoder(new FirstAndLastDigitLineParser());
-        int decode = doDecode(decoder, getClass().getResource("simple1.txt"));
+        InputReader inputReader = InputReader.of(Path.of(getClass().getResource("simple1.txt").toURI()));
+        ElfiCalibrationDecoder decoder = new ElfiCalibrationDecoder(inputReader, new FirstAndLastDigitLineParser());
+        int decode = doDecode(decoder);
         Assertions.assertThat(decode).isEqualTo(142);
     }
 
     @Test
     void testPart1() throws Exception {
-        ElfiCalibrationDecoder decoder = new ElfiCalibrationDecoder(new FirstAndLastDigitLineParser());
-        int decode = doDecode(decoder, getClass().getResource("input.txt"));
+        InputReader inputReader = InputReader.of(Path.of(getClass().getResource("input.txt").toURI()));
+        ElfiCalibrationDecoder decoder = new ElfiCalibrationDecoder(inputReader, new FirstAndLastDigitLineParser());
+        int decode = doDecode(decoder);
         Assertions.assertThat(decode).isEqualTo(54450);
     }
 
     @Test
     void testPart2Simple() throws Exception {
-        ElfiCalibrationDecoder decoder = new ElfiCalibrationDecoder(LineParsers.of(new NumberAsLettersToDigitLineParser(), new FirstAndLastDigitLineParser()));
-        int decode = doDecode(decoder, getClass().getResource("simple2.txt"));
+        InputReader inputReader = InputReader.of(Path.of(getClass().getResource("simple2.txt").toURI()));
+        ElfiCalibrationDecoder decoder = new ElfiCalibrationDecoder(inputReader, of(new NumberAsLettersToDigitLineParser(), new FirstAndLastDigitLineParser()));
+        int decode = doDecode(decoder);
         Assertions.assertThat(decode).isEqualTo(281);
     }
 
     @Test
     void testPart2() throws Exception {
-        ElfiCalibrationDecoder decoder = new ElfiCalibrationDecoder(LineParsers.of(new NumberAsLettersToDigitLineParser(), new FirstAndLastDigitLineParser()));
-        int decode = doDecode(decoder, getClass().getResource("input.txt"));
+        InputReader inputReader = InputReader.of(Path.of(getClass().getResource("input.txt").toURI()));
+        ElfiCalibrationDecoder decoder = new ElfiCalibrationDecoder(inputReader, of(new NumberAsLettersToDigitLineParser(), new FirstAndLastDigitLineParser()));
+        int decode = doDecode(decoder);
         Assertions.assertThat(decode).isEqualTo(54265);
     }
 
-    private int doDecode(ElfiCalibrationDecoder decoder, URL resource) throws Exception {
-        int decode = decoder.decode(Path.of(resource.toURI()));
+    private int doDecode(ElfiCalibrationDecoder decoder) throws Exception {
+        int decode = decoder.decode();
         LOGGER.info("Decoded: {}", decode);
         return decode;
     }

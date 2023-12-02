@@ -1,29 +1,28 @@
 package me.incalza.aoc2023.days._2;
 
-import me.incalza.aoc2023.days._1.LineParsers;
+import me.incalza.aoc2023.days.InputReader;
 import me.incalza.aoc2023.days._1.Day1;
-import me.incalza.aoc2023.days._1.ElfiCalibrationDecoder;
-import me.incalza.aoc2023.days._1.FirstAndLastDigitLineParser;
-import me.incalza.aoc2023.days._1.NumberAsLettersToDigitLineParser;
+import me.incalza.aoc2023.days._2.ElfiCubeConundrumDecoder.CubeConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.file.Path;
+
 
 public class Day2 {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Day2.class);
 
     public static void main(String[] args) throws Exception {
-        LOGGER.info("Calibration Part 1 {}", decoderPart1().decode(Path.of(Day1.class.getResource("input.txt").toURI())));
-        LOGGER.info("Calibration Part 2 {}", decoderPart2().decode(Path.of(Day1.class.getResource("input.txt").toURI())));
+        InputReader inputReader = InputReader.of(Path.of(Day1.class.getResource("input.txt").toURI()));
+        CubeConfig config = new CubeConfig(12, 13, 14);
+        LOGGER.info("Part 1 {}", decodePart1(inputReader, config).decode());
+//        LOGGER.info("Calibration Part 2 {}", decodePart2(inputReader).decode());
     }
 
-    private static ElfiCalibrationDecoder decoderPart1() {
-        return new ElfiCalibrationDecoder(LineParsers.of(new FirstAndLastDigitLineParser()));
+    private static ElfiCubeConundrumDecoder decodePart1(InputReader inputReader, CubeConfig config) {
+        return new ElfiCubeConundrumDecoder(inputReader, new GameRecordLineParser(), config);
     }
 
-    private static ElfiCalibrationDecoder decoderPart2() {
-        return new ElfiCalibrationDecoder(LineParsers.of(new NumberAsLettersToDigitLineParser(), new FirstAndLastDigitLineParser()));
-    }
+
 }

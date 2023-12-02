@@ -9,10 +9,10 @@ import java.util.List;
 
 public class LineParsers implements LineParser<String> {
     private static final Logger LOGGER = LoggerFactory.getLogger(LineParsers.class);
-    private final List<LineParser<String>> lineParsers;
+    private final List<LineParser<String>> parsers;
 
-    private LineParsers(List<LineParser<String>> lineParsers) {
-        this.lineParsers = lineParsers;
+    private LineParsers(List<LineParser<String>> parsers) {
+        this.parsers = parsers;
     }
 
     @SafeVarargs
@@ -23,7 +23,7 @@ public class LineParsers implements LineParser<String> {
     @Override
     public String parse(String line) {
         String result = line;
-        for (LineParser<String> lp : lineParsers) {
+        for (LineParser<String> lp : parsers) {
             LOGGER.debug("Pre Parse {}", result);
             result = lp.parse(result);
             LOGGER.debug("Post Parse {}", result);

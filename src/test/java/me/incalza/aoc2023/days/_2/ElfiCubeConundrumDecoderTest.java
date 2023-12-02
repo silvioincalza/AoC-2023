@@ -1,15 +1,14 @@
 package me.incalza.aoc2023.days._2;
 
-import me.incalza.aoc2023.days.LineParser;
-import org.assertj.core.api.Assertions;
+import me.incalza.aoc2023.days.InputReader;
+import me.incalza.aoc2023.days._2.ElfiCubeConundrumDecoder.CubeConfig;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URL;
 import java.nio.file.Path;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ElfiCubeConundrumDecoderTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(ElfiCubeConundrumDecoderTest.class);
@@ -17,19 +16,15 @@ class ElfiCubeConundrumDecoderTest {
 
     @Test
     void testPart1Simple() throws Exception {
-        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(new LineParser() {
-            @Override
-            public String parse(String line) {
-                return "";
-            }
-        });
-        int decode = doDecode(decoder, getClass().getResource("simple1.txt"));
-        Assertions.assertThat(decode).isEqualTo(142);
+        InputReader inputReader = InputReader.of(Path.of(getClass().getResource("simple1.txt").toURI()));
+        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(inputReader, new GameRecordLineParser(),new CubeConfig(12, 13, 14));
+        int decode = doDecode(decoder);
+        assertThat(decode).isEqualTo(8);
     }
 
 
-    private int doDecode(ElfiCubeConundrumDecoder decoder, URL resource) throws Exception {
-        int decode = decoder.decode(Path.of(resource.toURI()));
+    private int doDecode(ElfiCubeConundrumDecoder decoder) throws Exception {
+        int decode = decoder.decode();
         LOGGER.info("Decoded: {}", decode);
         return decode;
     }
