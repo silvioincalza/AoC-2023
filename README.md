@@ -1,4 +1,4 @@
-# ApC-2023
+# AoC-2023
 
 ## --- Day 1: Trebuchet?! ---
 
