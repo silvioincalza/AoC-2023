@@ -13,7 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ElfiCubeConundrumDecoderTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(ElfiCubeConundrumDecoderTest.class);
 
-
     @Test
     void testPart1Simple() throws Exception {
         InputReader inputReader = InputReader.of(Path.of(getClass().getResource("simple1.txt").toURI()));
