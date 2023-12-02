@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import static java.util.function.Function.identity;
 
-public class NumberAsLettersToDigitLineParser implements LineParser {
+public class NumberAsLettersToDigitLineParser implements LineParser<String> {
     private static final Map<String, String> numberAsWordToDigit = Map.of("one", "one1one", "two", "two2two", "three", "three3three", "four", "four4four", "five", "five5five", "six", "six6six", "seven", "seven7seven", "eight", "eight8eight", "nine", "nine9nine");
 
     @Override

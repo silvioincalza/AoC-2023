@@ -4,9 +4,6 @@
 <configuration>
     <import class="ch.qos.logback.classic.encoder.PatternLayoutEncoder"/>
     <import class="ch.qos.logback.core.ConsoleAppender"/>
-    <!--    <import class="ch.qos.logback.core.status.OnConsoleStatusListener"/>-->
-
-    <!--    <statusListener class="OnConsoleStatusListener"/>-->
 
     <appender name="STDOUT" class="ConsoleAppender">
         <encoder class="PatternLayoutEncoder">
