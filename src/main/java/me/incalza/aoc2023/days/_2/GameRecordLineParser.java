@@ -33,7 +33,11 @@ public class GameRecordLineParser implements LineParser<GameRecord> {
     }
 
     private int getGameId(String line) {
-        String gameId = line.substring(0, line.indexOf(":"));
-        return Integer.parseInt(gameId.substring("Game ".length()));
+        try {
+            String gameId = line.substring(0, line.indexOf(":"));
+            return Integer.parseInt(gameId.substring("Game ".length()));
+        } catch (Exception e) {
+            throw new IllegalStateException("cannot parse game id");
+        }
     }
 }

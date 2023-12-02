@@ -1,7 +1,7 @@
 package me.incalza.aoc2023.days._2;
 
 import me.incalza.aoc2023.days.InputReader;
-import me.incalza.aoc2023.days._2.GameRecord.CubeConfig;
+import me.incalza.aoc2023.days._2.GameRecord.SetOfCube;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,11 +12,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ElfiCubeConundrumDecoderTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(ElfiCubeConundrumDecoderTest.class);
+    private static final SetOfCube CUBE_CONFIG = new SetOfCube(12, 13, 14);
+    ;
 
     @Test
     void testPart1Simple() throws Exception {
         InputReader inputReader = InputReader.of(Path.of(getClass().getResource("simple1.txt").toURI()));
-        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(inputReader, new GameRecordLineParser(), new CubeConfig(12, 13, 14));
+        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(inputReader, CUBE_CONFIG);
         int decode = doDecode(decoder);
         assertThat(decode).isEqualTo(8);
     }
@@ -24,7 +26,8 @@ class ElfiCubeConundrumDecoderTest {
     @Test
     void testPart1() throws Exception {
         InputReader inputReader = InputReader.of(Path.of(getClass().getResource("input.txt").toURI()));
-        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(inputReader, new GameRecordLineParser(), new CubeConfig(12, 13, 14));
+
+        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(inputReader, CUBE_CONFIG);
         int decode = doDecode(decoder);
         assertThat(decode).isEqualTo(2486);
     }
@@ -32,7 +35,7 @@ class ElfiCubeConundrumDecoderTest {
     @Test
     void testPart2Simple() throws Exception {
         InputReader inputReader = InputReader.of(Path.of(getClass().getResource("simple1.txt").toURI()));
-        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(inputReader, new GameRecordLineParser(), new CubeConfig(12, 13, 14));
+        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(inputReader, new GameRecordLineParser(), new SetOfCube(12, 13, 14));
         int decode = doDecodePower(decoder);
         assertThat(decode).isEqualTo(2286);
     }
@@ -40,7 +43,7 @@ class ElfiCubeConundrumDecoderTest {
     @Test
     void testPart2() throws Exception {
         InputReader inputReader = InputReader.of(Path.of(getClass().getResource("input.txt").toURI()));
-        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(inputReader, new GameRecordLineParser(), new CubeConfig(12, 13, 14));
+        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(inputReader, CUBE_CONFIG);
         int decode = doDecodePower(decoder);
         assertThat(decode).isEqualTo(87984);
     }
