@@ -1,7 +1,7 @@
 package me.incalza.aoc2023.days._2;
 
 import me.incalza.aoc2023.days.InputReader;
-import me.incalza.aoc2023.days._2.ElfiCubeConundrumDecoder.CubeConfig;
+import me.incalza.aoc2023.days._2.GameRecord.CubeConfig;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,10 +29,33 @@ class ElfiCubeConundrumDecoderTest {
         assertThat(decode).isEqualTo(2486);
     }
 
+    @Test
+    void testPart2Simple() throws Exception {
+        InputReader inputReader = InputReader.of(Path.of(getClass().getResource("simple1.txt").toURI()));
+        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(inputReader, new GameRecordLineParser(), new CubeConfig(12, 13, 14));
+        int decode = doDecodePower(decoder);
+        assertThat(decode).isEqualTo(2286);
+    }
+
+    @Test
+    void testPart2() throws Exception {
+        InputReader inputReader = InputReader.of(Path.of(getClass().getResource("input.txt").toURI()));
+        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(inputReader, new GameRecordLineParser(), new CubeConfig(12, 13, 14));
+        int decode = doDecodePower(decoder);
+        assertThat(decode).isEqualTo(87984);
+    }
+
+
 
     private int doDecode(ElfiCubeConundrumDecoder decoder) throws Exception {
         int decode = decoder.decode();
         LOGGER.info("Decoded: {}", decode);
+        return decode;
+    }
+
+    private int doDecodePower(ElfiCubeConundrumDecoder decoder) throws Exception {
+        int decode = decoder.decodePower();
+        LOGGER.info("Decoded Power: {}", decode);
         return decode;
     }
 

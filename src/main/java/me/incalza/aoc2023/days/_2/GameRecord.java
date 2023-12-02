@@ -29,10 +29,20 @@ public class GameRecord {
         return setOfCubes.stream().anyMatch(v -> v.blueCube() > max);
     }
 
+    public CubeConfig getPossibleConfiguration() {
+        int maxRed = setOfCubes.stream().mapToInt(SetOfCube::redCube).max().getAsInt();
+        int maxGreen = setOfCubes.stream().mapToInt(SetOfCube::greenCube).max().getAsInt();
+        int maxBlue = setOfCubes.stream().mapToInt(SetOfCube::blueCube).max().getAsInt();
+        return new CubeConfig(maxRed, maxGreen, maxBlue);
+    }
+
     public List<SetOfCube> getSetOfCubes() {
         return setOfCubes;
     }
 
     public record SetOfCube(int redCube, int greenCube, int blueCube) {
+    }
+
+    public record CubeConfig(int maxRed, int maxGreen, int maxBlue) {
     }
 }
