@@ -40,7 +40,7 @@ class ElfiCalibrationDecoderTest {
     void testPart2() throws Exception {
         ElfiCalibrationDecoder decoder = new ElfiCalibrationDecoder(LineParsers.of(new NumberAsWordToDigitLineParser(), new SimpleLineParser()));
         int decode = getDecode(decoder, getClass().getResource("input.txt"));
-        Assertions.assertThat(decode).isEqualTo(54273);
+        Assertions.assertThat(decode).isEqualTo(54265);
     }
 
     private int getDecode(ElfiCalibrationDecoder decoder, URL resource) throws  Exception {

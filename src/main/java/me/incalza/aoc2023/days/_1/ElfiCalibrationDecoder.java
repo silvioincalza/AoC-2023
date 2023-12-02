@@ -12,7 +12,7 @@ import static java.util.function.Function.identity;
 public class ElfiCalibrationDecoder {
 
     public static class NumberAsWordToDigitLineParser implements LineParser {
-        private static final Map<String, Integer> numberAsWordToDigit = Map.of("zero", 0, "one", 1, "two", 2, "three", 3, "four", 4, "five", 5, "six", 6, "seven", 7, "eight", 8, "nine", 9);
+        private static final Map<String, String> numberAsWordToDigit = Map.of( "one", "one1one", "two", "two2two", "three", "three3three", "four", "four4four", "five", "five5five", "six", "six6six", "seven", "seven7seven", "eight", "eight8eight", "nine", "nine9nine");
 
         @Override
         public String parse(String line) {
@@ -21,7 +21,7 @@ public class ElfiCalibrationDecoder {
                     .collect(Collectors.toMap(line::indexOf, identity()));
             String result = line;
             for (String key : orderTpReplaceNumberAsWord.values()) {
-                result = result.replaceAll(key, "" + numberAsWordToDigit.get(key));
+                result = result.replaceAll(key,  numberAsWordToDigit.get(key));
             }
             return result;
         }
@@ -31,10 +31,8 @@ public class ElfiCalibrationDecoder {
 
         @Override
         public String parse(String line) {
-            String firstDigit = line.chars().filter(Character::isDigit).mapToObj(Character::toString).findFirst().orElse("0");
-            String lastDigit = new StringBuilder(line).reverse().chars().filter(Character::isDigit).mapToObj(Character::toString).findFirst().orElse("0");
-            if ("0".equals(lastDigit))
-                return firstDigit;
+            String firstDigit = line.chars().filter(Character::isDigit).mapToObj(Character::toString).findFirst().orElse("");
+            String lastDigit = new StringBuilder(line).reverse().chars().filter(Character::isDigit).mapToObj(Character::toString).findFirst().orElse("");
             return firstDigit + lastDigit;
         }
     }
