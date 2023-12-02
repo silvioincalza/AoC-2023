@@ -10,7 +10,6 @@ public class Day1 {
     public static void main(String[] args) throws Exception{
 
         ElfiCalibrationDecoder decoder = new ElfiCalibrationDecoder(LineParsers.of(new NumberAsWordToDigitLineParser(), new SimpleLineParser()));
-        System.out.println("Calibration Part 1 %s".formatted(decoder.decode(Path.of(Day1.class.getResource("input.txt").toURI()))));
-        System.out.println("Calibration Part 3 %s".formatted(decoder.decode(Path.of(Day1.class.getResource("simple2.txt").toURI()))));
+        System.out.println("Calibration  %s".formatted(decoder.decode(Path.of(Day1.class.getResource("input.txt").toURI()))));
     }
 }

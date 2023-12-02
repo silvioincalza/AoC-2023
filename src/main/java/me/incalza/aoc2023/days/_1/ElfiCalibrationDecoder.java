@@ -53,9 +53,9 @@ public class ElfiCalibrationDecoder {
         public String parse(String line) {
             String result = line;
             for (LineParser lp : lineParsers) {
-                LOGGER.info("Pre Parse {}", result);
+                LOGGER.debug("Pre Parse {}", result);
                 result = lp.parse(result);
-                LOGGER.info("Post Parse {}", result);
+                LOGGER.debug("Post Parse {}", result);
             }
             return result;
         }
