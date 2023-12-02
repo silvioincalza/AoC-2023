@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class GameRecordLineParser implements LineParser<GameRecord> {
-    private static final Pattern regex = Pattern.compile("(?<total>\\d{1,})\\s(?<color>blue|red|green)");
+    private static final Pattern regex = Pattern.compile("(?<total>\\d+)\\s(?<color>blue|red|green)");
 
     @Override
     public GameRecord parse(String line) {

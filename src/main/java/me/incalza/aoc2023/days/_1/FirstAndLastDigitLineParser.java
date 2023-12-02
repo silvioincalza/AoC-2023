@@ -2,7 +2,7 @@ package me.incalza.aoc2023.days._1;
 
 import me.incalza.aoc2023.days.LineParser;
 
-public class FirstAndLastDigitLineParser implements LineParser {
+public class FirstAndLastDigitLineParser implements LineParser<String> {
 
     @Override
     public String parse(String line) {
