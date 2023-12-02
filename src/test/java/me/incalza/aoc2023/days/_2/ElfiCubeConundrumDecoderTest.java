@@ -16,7 +16,7 @@ class ElfiCubeConundrumDecoderTest {
     @Test
     void testPart1Simple() throws Exception {
         InputReader inputReader = InputReader.of(Path.of(getClass().getResource("simple1.txt").toURI()));
-        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(inputReader, new GameRecordLineParser(),new CubeConfig(12, 13, 14));
+        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(inputReader, new GameRecordLineParser(), new CubeConfig(12, 13, 14));
         int decode = doDecode(decoder);
         assertThat(decode).isEqualTo(8);
     }
@@ -24,7 +24,7 @@ class ElfiCubeConundrumDecoderTest {
     @Test
     void testPart1() throws Exception {
         InputReader inputReader = InputReader.of(Path.of(getClass().getResource("input.txt").toURI()));
-        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(inputReader, new GameRecordLineParser(),new CubeConfig(12, 13, 14));
+        ElfiCubeConundrumDecoder decoder = new ElfiCubeConundrumDecoder(inputReader, new GameRecordLineParser(), new CubeConfig(12, 13, 14));
         int decode = doDecode(decoder);
         assertThat(decode).isEqualTo(2486);
     }

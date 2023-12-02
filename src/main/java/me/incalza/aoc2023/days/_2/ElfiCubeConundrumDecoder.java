@@ -3,13 +3,9 @@ package me.incalza.aoc2023.days._2;
 import me.incalza.aoc2023.days.InputReader;
 import me.incalza.aoc2023.days.LineParser;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static java.util.function.Predicate.not;
 
 public class ElfiCubeConundrumDecoder {
-
     public record CubeConfig(int maxRed, int maxGreen, int maxBlue) {
     }
 
@@ -23,6 +19,10 @@ public class ElfiCubeConundrumDecoder {
         this.cubeConfig = cubeConfig;
     }
 
+    public ElfiCubeConundrumDecoder(InputReader inputReader, CubeConfig cubeConfig) {
+        this(inputReader, new GameRecordLineParser(), cubeConfig);
+    }
+
     public int decode() {
         return inputReader.read().stream().map(lineParser::parse)
                 .filter(not(v -> v.hasRedCubesGreatThant(cubeConfig.maxRed())))
@@ -30,5 +30,6 @@ public class ElfiCubeConundrumDecoder {
                 .filter(not(v -> v.hasBlueCubesGreatThant(cubeConfig.maxBlue())))
                 .mapToInt(GameRecord::getId).sum();
     }
+
 
 }

@@ -3,8 +3,6 @@ package me.incalza.aoc2023.days._1;
 import me.incalza.aoc2023.days.InputReader;
 import me.incalza.aoc2023.days.LineParser;
 
-import java.nio.file.Path;
-
 public class ElfiCalibrationDecoder {
 
     private final InputReader reader;
