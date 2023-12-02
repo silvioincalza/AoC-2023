@@ -1,6 +1,6 @@
 # AoC-2023
 
-![Build](https://github.com/silvioincalza/AoC-2023/actions/workflows/maven/badge.svg) ![Coverage](.github/badges/jacoco.svg)
+![Build](https://github.com/silvioincalza/AoC-2023/actions/workflows/maven.yml/badge.svg) ![Coverage](.github/badges/jacoco.svg)
 
 ## --- Day 1: Trebuchet?! ---
 
