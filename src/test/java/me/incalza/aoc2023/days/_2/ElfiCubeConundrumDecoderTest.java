@@ -46,7 +46,6 @@ class ElfiCubeConundrumDecoderTest {
     }
 
 
-
     private int doDecode(ElfiCubeConundrumDecoder decoder) throws Exception {
         int decode = decoder.decode();
         LOGGER.info("Decoded: {}", decode);
