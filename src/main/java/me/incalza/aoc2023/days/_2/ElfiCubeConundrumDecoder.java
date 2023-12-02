@@ -3,8 +3,6 @@ package me.incalza.aoc2023.days._2;
 import me.incalza.aoc2023.days.InputReader;
 import me.incalza.aoc2023.days.LineParser;
 import me.incalza.aoc2023.days._2.GameRecord.CubeConfig;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.stream.Stream;
 
