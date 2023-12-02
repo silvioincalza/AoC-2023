@@ -1,5 +1,7 @@
 # AoC-2023
 
+![Build](https://github.com/silvioincalza/AoC-2023/actions/workflows/maven/badge.svg) ![Coverage](.github/badges/jacoco.svg)
+
 ## --- Day 1: Trebuchet?! ---
 
 Something is wrong with global snow production, and you've been selected to take a look. The Elves have even given you a
