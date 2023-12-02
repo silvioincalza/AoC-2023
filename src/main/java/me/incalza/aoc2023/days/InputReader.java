@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface InputReader {
 
-    List<String> read();
-
-     static InputReader of(Path path) {
+    static InputReader of(Path path) {
         return new DefaultInputReader(path);
     }
+
+    List<String> read();
 
     final class DefaultInputReader implements InputReader {
 
