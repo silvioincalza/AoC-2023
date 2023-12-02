@@ -17,32 +17,32 @@ class ElfiCalibrationDecoderTest {
     @Test
     void testPart1Simple() throws Exception {
         ElfiCalibrationDecoder decoder = new ElfiCalibrationDecoder(new FirstAndLastDigitLineParser());
-        int decode = getDecode(decoder, getClass().getResource("simple1.txt"));
+        int decode = doDecode(decoder, getClass().getResource("simple1.txt"));
         Assertions.assertThat(decode).isEqualTo(142);
     }
 
     @Test
     void testPart1() throws Exception {
         ElfiCalibrationDecoder decoder = new ElfiCalibrationDecoder(new FirstAndLastDigitLineParser());
-        int decode = getDecode(decoder, getClass().getResource("input.txt"));
+        int decode = doDecode(decoder, getClass().getResource("input.txt"));
         Assertions.assertThat(decode).isEqualTo(54450);
     }
 
     @Test
     void testPart2Simple() throws Exception {
         ElfiCalibrationDecoder decoder = new ElfiCalibrationDecoder(LineParsers.of(new NumberAsLettersToDigitLineParser(), new FirstAndLastDigitLineParser()));
-        int decode = getDecode(decoder, getClass().getResource("simple2.txt"));
+        int decode = doDecode(decoder, getClass().getResource("simple2.txt"));
         Assertions.assertThat(decode).isEqualTo(281);
     }
 
     @Test
     void testPart2() throws Exception {
         ElfiCalibrationDecoder decoder = new ElfiCalibrationDecoder(LineParsers.of(new NumberAsLettersToDigitLineParser(), new FirstAndLastDigitLineParser()));
-        int decode = getDecode(decoder, getClass().getResource("input.txt"));
+        int decode = doDecode(decoder, getClass().getResource("input.txt"));
         Assertions.assertThat(decode).isEqualTo(54265);
     }
 
-    private int getDecode(ElfiCalibrationDecoder decoder, URL resource) throws Exception {
+    private int doDecode(ElfiCalibrationDecoder decoder, URL resource) throws Exception {
         int decode = decoder.decode(Path.of(resource.toURI()));
         LOGGER.info("Decoded: {}", decode);
         return decode;
