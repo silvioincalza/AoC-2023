@@ -19,11 +19,11 @@ public class Day1 {
         LOGGER.info("Calibration Part 2 {}", decodePart2(inputReader).decode());
     }
 
-    private static ElfiCalibrationDecoder decodePart1(InputReader inputReader) {
-        return new ElfiCalibrationDecoder(inputReader, of(new FirstAndLastDigitLineParser()));
+    private static CalibrationDecoder decodePart1(InputReader inputReader) {
+        return new CalibrationDecoder(inputReader, of(new FirstAndLastDigitLineParser()));
     }
 
-    private static ElfiCalibrationDecoder decodePart2(InputReader inputReader) {
-        return new ElfiCalibrationDecoder(inputReader, of(new NumberAsLettersToDigitLineParser(), new FirstAndLastDigitLineParser()));
+    private static CalibrationDecoder decodePart2(InputReader inputReader) {
+        return new CalibrationDecoder(inputReader, of(new NumberAsLettersToDigitLineParser(), new FirstAndLastDigitLineParser()));
     }
 }

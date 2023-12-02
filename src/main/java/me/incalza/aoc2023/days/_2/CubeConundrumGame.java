@@ -8,22 +8,22 @@ import java.util.stream.Stream;
 
 import static java.util.function.Predicate.not;
 
-public class ElfiCubeConundrumDecoder {
+public class CubeConundrumGame {
     private final InputReader inputReader;
     private final LineParser<GameRecord> lineParser;
     private final SetOfCube cubeConfig;
 
-    public ElfiCubeConundrumDecoder(InputReader inputReader, LineParser<GameRecord> lineParser, SetOfCube cubeConfig) {
+    public CubeConundrumGame(InputReader inputReader, LineParser<GameRecord> lineParser, SetOfCube cubeConfig) {
         this.inputReader = inputReader;
         this.lineParser = lineParser;
         this.cubeConfig = cubeConfig;
     }
 
-    public ElfiCubeConundrumDecoder(InputReader inputReader, SetOfCube cubeConfig) {
+    public CubeConundrumGame(InputReader inputReader, SetOfCube cubeConfig) {
         this(inputReader, new GameRecordLineParser(), cubeConfig);
     }
 
-    public int decode() {
+    public int sumOfGameId() {
         return getGameRecordStream()
                 .filter(not(v -> v.hasRedCubesGreatThant(cubeConfig.redCube())))
                 .filter(not(v -> v.hasGreenCubesGreatThant(cubeConfig.greenCube())))
@@ -31,7 +31,7 @@ public class ElfiCubeConundrumDecoder {
                 .mapToInt(GameRecord::getId).sum();
     }
 
-    public int decodePower() {
+    public int maxPower() {
         return getGameRecordStream()
                 .mapToInt(GameRecord::getPower).sum();
     }

@@ -15,12 +15,12 @@ public class Day2 {
     public static void main(String[] args) throws Exception {
         InputReader inputReader = InputReader.of(Path.of(Day2.class.getResource("input.txt").toURI()));
         SetOfCube config = new SetOfCube(12, 13, 14);
-        LOGGER.info("Part 1 {}", decode(inputReader, config).decode());
-        LOGGER.info("Part 2 {}", decode(inputReader, config).decodePower());
+        LOGGER.info("Part 1 {}", decode(inputReader, config).sumOfGameId());
+        LOGGER.info("Part 2 {}", decode(inputReader, config).maxPower());
     }
 
-    private static ElfiCubeConundrumDecoder decode(InputReader inputReader, SetOfCube config) {
-        return new ElfiCubeConundrumDecoder(inputReader, config);
+    private static CubeConundrumGame decode(InputReader inputReader, SetOfCube config) {
+        return new CubeConundrumGame(inputReader, config);
     }
 
 
