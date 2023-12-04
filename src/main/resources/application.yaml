@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: AoC2023
+  mvc:
+    servlet:
+      path: /api

@@ -1,0 +1,70 @@
+openapi: "3.1.0"
+info:
+  version: 1.0.0
+  title: AoC 2023
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:8080/api
+paths:
+  /aoc/events/{year}/days/{day}/result:
+    get:
+      summary: Result Advent of Code
+      operationId: resultAoC
+      tags:
+        - aoc
+      parameters:
+        - name: year
+          in: path
+          description: AoC year
+          required: true
+          schema:
+            type: integer
+            minimum: 2023
+            maximum: 2099
+            format: int32
+      responses:
+        '200':
+          description: result od aoc
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pets"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Pet:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        tag:
+          type: string
+    Pets:
+      type: array
+      maxItems: 100
+      items:
+        $ref: "#/components/schemas/Pet"
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
